@@ -1,0 +1,106 @@
+# --
+# Copyright (C) 2001-2021 OTRS AG, https://otrs.com/
+# Copyright (C) 2021 Znuny GmbH, https://znuny.org/
+# Copyright (C) 2023 mo-azfar, https://github.com/mo-azfar/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+# --
+
+<div id="MainBox" class="TicketView ARIARoleMain SearchResults [% Config("Ticket::Frontend::CustomerTicketOverviewSortable") %] Sortable">
+    <div class="ContentWrapper flex-column">
+        <h1 class="PageTitle">[% Translate("Search Results") | html %]</h1>
+        <div class="Content flex-center SidebarLast">
+            <div class="SidebarColumn">
+                <div class="WidgetSimple search-tpl-widget">
+                    <div class="Header">
+                        <h2>[% Translate("Template") | html %]</h2>
+                    </div>
+                    <div class="Content">
+                        <div class="Field">
+                            <div class="flex-row">
+                                <label>[% Data.ProfileName | html %]</label>
+                            </div>
+
+                            <div class="content-wrapper">
+
+[% RenderBlockStart("SearchTerms") %]
+                                    <span class="pill-sm">
+                                        [% Data.Attribute | html %]: [% Data.Value | html %]
+# hide remove link, functionality is not yet implemented
+#                                     <a title="[% Translate("Remove this Search Term.") | html %]" href="[% Data.SearchValue %]">&times;</a>
+                                    </span>
+[% RenderBlockEnd("SearchTerms") %]
+
+                            </div>
+                        </div>
+
+                        <div class="flex-row">
+                            <a href="[% Env("Baselink") %]Action=[% Env("Action") %];Subaction=LoadProfile;[% Data.Link | html %]" class="btn-primary btn-main">[% Translate("Change search options") | html %] </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card ContentColumn padding-none">
+                <div class="OverviewActions">
+
+[% RenderBlockStart("BottomSubNavigation") %]
+                        <div id="BottomActionRow" class="ActionRow BigButtons">
+                            <ul class="Tabs">
+                                <li>
+                                    <a href="[% Env("Baselink") %]Action=[% Env("Action") %];Subaction=LoadProfile;[% Data.Link | uri %]">
+                                        &larr; [% Translate("Change search options") | html %]
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <span class="Pagination">
+                                <ul>
+                                    <li>
+                                        <span>[% Data.Result %] [% Translate("of") | html %] [% Data.TotalHits %]</span>
+                                    </li>
+
+                                    <li class="page-links">[% Data.SiteNavBar %]</li>
+                                </ul>
+                            </span>
+
+                        </div>
+[% RenderBlockEnd("BottomSubNavigation") %]
+
+                </div>
+[% RenderBlockStart("NoDataFoundMsg") %]
+                            <a href="#">[% Translate("No FAQ data found.") | html %]</a>
+[% RenderBlockEnd("NoDataFoundMsg") %]
+
+# --
+# Featured and Card FAQ
+# --
+                <div class="row">
+[% RenderBlockStart("Record") %]
+                    <div class="column">
+                    <div class="WidgetSimple WidgetSimpleExtended">
+                        <div class="Header">
+                            <h3><a href="[% Env("Baselink") %]Action=PublicFAQZoom;ItemID=[% Data.FAQID | uri %];ZoomBackLink=[% Data.ZoomBackLink | uri %];" class="faq-no-link">FAQ#[% Data.Number | html %]</a></h3>
+                        </div>
+                        <div class="Content">  
+                            <span class="faq-title" title="[% Data.Title | html %]"><a href="[% Env("Baselink") %]Action=CustomerFAQZoom;ItemID=[% Data.FAQID | uri %];" class="faq-no-link">[% Data.Title | truncate(160) | html %]</a></span>
+                            <span class="extra-pill">
+                                <span class="state-pill" title="Last Updated">[% Data.Changed | html %]</span>
+[% RenderBlockStart("RecordLanguage") %]
+                                <span class="language-pill" title="Language">[% Data.Language | truncate(5) | html %]</span>
+[% RenderBlockEnd("RecordLanguage") %]
+                                <span class="cat-pill" title="Category">[% Data.CategoryName | truncate(45) | html %]</span>  
+                            </span>  
+                        </div>
+                    </div>
+                    </div>                 
+[% RenderBlockEnd("Record") %]
+                </div>                     
+# --                       
+            </div>
+        </div>
+    </div>
+</div>

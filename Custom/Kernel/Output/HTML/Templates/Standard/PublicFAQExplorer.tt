@@ -1,0 +1,218 @@
+# --
+# Copyright (C) 2001-2021 OTRS AG, https://otrs.com/
+# Copyright (C) 2021 Znuny GmbH, https://znuny.org/
+# Copyright (C) 2023 mo-azfar, https://github.com/mo-azfar/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+# --
+
+<div id="MainBox" class="ARIARoleMain LayoutFixedSidebar mainStructure SidebarLast">
+    <div class="ContentWrapper flex-column">
+
+        <div class="FAQHeader">
+            <h1>[% Translate("FAQ Explorer") | html %]</h1>
+        </div>
+
+        <ul class="BreadCrumb">
+[% RenderBlockStart("FAQPathCategoryElement") %]
+                <li>
+                    <a href="[% Env("Baselink") %]Action=PublicFAQExplorer;CategoryID=[% Data.CategoryID | uri %]">
+                        [% Data.Name | html %]
+                    </a>
+                </li>
+                <li>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+[% RenderBlockEnd("FAQPathCategoryElement") %]
+
+[% RenderBlockStart("FAQPathCategoryElementNoLink") %]
+                <li>[% Data.Name | html %]</li>
+[% RenderBlockEnd("FAQPathCategoryElementNoLink") %]
+        </ul>
+        <div class="mainContent">
+            <div class="SidebarColumn">
+
+# --
+# Featured and Card FAQ
+# --
+<div class="WidgetSimple">
+    <div class="Header">
+        <h3>[% Translate("Can't Find Related FAQ ? Login Now") | html %]</h3>
+    </div>
+
+    <div class="Content">
+        <ul class="Actionlist">
+            <li>
+                <a  class="btn-primary btn-main" href="customer.pl">
+                    <span>
+                        [% Translate("Customer Portal Login") | html %]
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+# --
+
+[% RenderBlockStart("QuickSearch") %]
+                    <div class="WidgetSimple search-widget">
+                        <div class="Header">
+                            <h3>[% Translate("Search") | html %]</h3>
+                        </div>
+
+                        <div class="Content">
+                            <ul class="Actionlist">
+                                <li>
+                                    <form class="SearchBox" action="[% Env("CGIHandle") %]" method="post">
+                                        <input type="hidden" name="Action" value="[% Data.Action | html %]"/>
+                                        <input type="hidden" name="Subaction" value="Search"/>
+                                        <input type="hidden" name="Nav" value="[% Data.Nav | html %]"/>
+                                        <input type="hidden" name="SearchBackLink" value="[% Data.SearchBackLink | html %]"/>
+
+                                        <div class="field-wrapper">
+                                            <input type="text" name="Fulltext" value="[% Data.Search | html %]" id="Search" title="[% Translate("Search") | html %]"/>
+                                            <button type="submit" value="[% Translate("Search") | html %]" class="btn-primary btn-main btn-icon">
+                                                <i class="fa fa-search"></i>
+                                                <span class="InvisibleText"><span>
+                                                [% Translate("Quick Search") | html %]
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <p class="FieldExplanation">[% Translate("Wildcards are allowed.") | html %]</p>
+
+                                    <a  class="btn-primary btn-main" href="[% Env("Baselink") %]Action=[% Data.Action | uri %];">
+                                        <span>
+                                            [% Translate("Advanced Search") | html %]
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+[% RenderBlockEnd("QuickSearch") %]
+
+[% RenderBlockStart("InfoBoxFAQMiniList") %]
+                    <div class="WidgetSimple mini-list-widget">
+
+                        <div class="Header">
+                            <h3>[% Translate(Data.Header) | html %]</h3>
+
+[% RenderBlockStart("InfoBoxFAQMiniListNewsRSS") %]
+                                <a target="_blank" href="[% Env("Baselink") %]Action=PublicFAQRSS;Type=[% Data.Type | uri %]" title="[% Translate(Data.Title) | html %]" class="RSSIcon AsBlock icon-hover">
+                                    <i class="fa fa-rss"></i>
+                                </a>
+[% RenderBlockEnd("InfoBoxFAQMiniListNewsRSS") %]
+                        </div>
+
+                        <div class="Content">
+                            <ul class="Tablelike">
+[% RenderBlockStart("InfoBoxFAQMiniListItemRow") %]
+                                    <li>
+                                        <a href="[% Env("Baselink") %]Action=PublicFAQZoom;ItemID=[% Data.ItemID | uri %]" title="[% Data.Title | html %] ([% Data.CategoryName | html %])">
+                                            <div>
+[% RenderBlockStart("InfoBoxFAQMiniListItemRowPositionNumber") %]
+                                                    [% Data.Number | html %].
+[% RenderBlockEnd("InfoBoxFAQMiniListItemRowPositionNumber") %]
+                                                [% Data.Title | html %]
+                                            </div>
+                                            <p>
+                                                [% Data.CategoryShortName | truncate(15) | html %] - [% Data.Language | html %] - [% Translate(Data.State) | html %] - [% Data.Created | Localize("TimeShort") %]
+                                            </p>
+                                        </a>
+                                    </li>
+[% RenderBlockEnd("InfoBoxFAQMiniListItemRow") %]
+                            </ul>
+                        </div>
+                    </div>
+[% RenderBlockEnd("InfoBoxFAQMiniList") %]
+            </div>
+
+            <div class="ContentColumn">
+
+[% RenderBlockStart("Subcategories") %]
+                   
+[% RenderBlockStart("OverviewResult") %]
+                            
+                <h2>[% Translate("Subcategories") | html %]</h2>
+
+[% RenderBlockStart("NoCategoryDataFoundMsg") %]
+                <a href="#">[% Translate("No subcategories found.") | html %]</a>                     
+[% RenderBlockEnd("NoCategoryDataFoundMsg") %]
+# --
+# Featured and Card FAQ
+# --
+                <div class="row">
+[% RenderBlockStart("OverviewResultRow") %]
+                    <div class="column-cat">
+                        <a href="[% Env("Baselink") %]Action=[% Env("Action") %];CategoryID=[% Data.CategoryID | uri %]" title="[% Data.Comment | html %]">
+                        <div class="faq-cat faq-cat-name">
+                            <h2>[% Data.Name | html %]</h2>
+                            <h3>Articles ([% Data.ArticleCount | html %])</h3>
+                            <h3>Subcategories ([% Data.SubCategoryCount | html %])</h3>
+                        </div>
+                        </a>
+                    </div>
+[% RenderBlockEnd("OverviewResultRow") %]
+                </div>
+# --                                          
+[% RenderBlockEnd("OverviewResult") %]
+                    
+[% RenderBlockEnd("Subcategories") %]
+
+[% RenderBlockStart("FAQItemList") %]
+[% RenderBlockStart("Pagination") %]
+                    <div class="Pagination">
+                    <strong>[% Data.Result | html %]</strong> [% Translate("of") | html %] <strong>[% Data.TotalHits | html %]</strong> - [% Translate("Page") | html %]: [% Data.SiteNavBar %]
+                    </div>
+[% RenderBlockEnd("Pagination") %]
+
+[% RenderBlockStart("NoFAQDataFoundMsg") %]
+                    <a href="#">[% Translate("No FAQ articles found.") | html %]</a>   
+[% RenderBlockEnd("NoFAQDataFoundMsg") %]
+
+# --
+# Featured and Card FAQ
+# --
+                <div class="row">
+[% RenderBlockStart("Record") %] 
+                    <div class="column">
+
+                    <a href="[% Env("Baselink") %]Action=PublicFAQZoom;ItemID=[% Data.FAQID | uri %];ZoomBackLink=[% Data.ZoomBackLink | uri %];" class="faq-no-link">
+                    
+                    <div class="WidgetSimple WidgetSimpleExtended">
+                        <div class="Header">
+                            <h3><a href="[% Env("Baselink") %]Action=PublicFAQZoom;ItemID=[% Data.FAQID | uri %];ZoomBackLink=[% Data.ZoomBackLink | uri %];" class="faq-no-link">FAQ#[% Data.Number | html %]</a></h3>
+                        </div>
+                        <div class="Content">  
+                            <span class="faq-title" title="[% Data.Title | html %]"><a href="[% Env("Baselink") %]Action=PublicFAQZoom;ItemID=[% Data.FAQID | uri %];ZoomBackLink=[% Data.ZoomBackLink | uri %];" class="faq-no-link">[% Data.Title | truncate(160) | html %]</a></span>
+                            <span class="extra-pill">
+[% RenderBlockStart("Featured") %]
+                            <span class="featured-pill" title="Featured"><span class="fa fa-star"></span></span>
+[% RenderBlockEnd("Featured") %]
+
+[% RenderBlockStart("RecordLanguage") %]
+                                <span class="language-pill" title="Language">[% Data.Language | truncate(5) | html %]</span>
+[% RenderBlockEnd("RecordLanguage") %]
+                                <span class="cat-pill" title="Category">[% Data.CategoryName | truncate(45) | html %]</span>
+                            </span>  
+                        </div>
+                    </div>
+                    </div>                  
+[% RenderBlockEnd("Record") %]
+                </div>
+# --                   
+[% RenderBlockStart("BottomSubNavigation") %]
+                                <div class="Pagination">
+                                    <strong>[% Data.Result | html %]</strong> [% Translate("of") | html %] <strong>[% Data.TotalHits | html %]</strong> - [% Translate("Page") | html %]: [% Data.SiteNavBar %]
+                                </div>
+[% RenderBlockEnd("BottomSubNavigation") %]
+                       
+[% RenderBlockEnd("FAQItemList") %]
+
+            </div>
+        </div>
+    </div>
+</div>
