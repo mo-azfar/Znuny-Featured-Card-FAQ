@@ -109,7 +109,7 @@
 # --
 # Featured and Card FAQ
 # --
-                <div class="row">
+                <div class="row-cat">
 [% RenderBlockStart("OverviewResultRow") %]
                     <div class="column-cat">
                         <a href="[% Env("Baselink") %]Action=[% Env("Action") %];CategoryID=[% Data.CategoryID | uri %]" title="[% Data.Comment | html %]">

@@ -15,7 +15,7 @@ handheld {
 
     .WidgetSimpleExtended {
         min-height: 100% !important;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
     }
 
     .WidgetSimpleExtended .Header {
@@ -26,28 +26,44 @@ handheld {
     .column {
         float: left;
         width: 33%;
-        padding: 0 10px;
-        padding-bottom: 20px;
+        padding: 0 0.625rem;
+        padding-bottom: 1.2rem;
     }
 
     /* Float 5 columns side by side */
     .column-cat {
         float: left;
         width: 20%;
-        padding: 0 10px;
-        padding-bottom: 20px;
+        padding: 0 0.625rem;
+        padding-bottom: 1.2rem;
     }
 
     /* Remove extra left and right margins, due to padding */
     .row {
-        margin: 0 -5px;
+        margin: 0 -0.313rem;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
     }
 
+    .row-cat {
+        margin: 0 -0.313rem;
+        display: flex;
+        justify-content: left;
+        flex-wrap: wrap;
+        border-bottom: 0.1rem double #e8e8e8;
+        margin-bottom: 0.3rem;
+    }
+
     /* Clear floats after the columns */
     .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Clear floats after the columns */
+    .row-cat:after {
         content: "";
         display: table;
         clear: both;
@@ -58,18 +74,18 @@ handheld {
         .column {
             width: 100%;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 0.1rem;
         }
 
         .column-cat {
             width: 33%;
             display: block;
-            margin-bottom: 0px;
+            margin-bottom: 0.1rem;
         }
     }
 
     .faq-title {
-        font-size: 13px;
+        font-size: 0.813rem;
         box-sizing: border-box;
         padding-bottom: 8%;
     }
@@ -80,10 +96,10 @@ handheld {
 
     .extra-pill {
         position: absolute;
-        bottom: 10px;
-        right: 10px;
+        bottom: 0.625rem;
+        right: 0.625rem;
         font-family: Courier, monospace;
-        font-size: 11px;
+        font-size: 0.688rem;
         color: #ffffff;
     }
 
@@ -91,42 +107,42 @@ handheld {
         color: orange;
         background-color: #424241;
         border: none;
-        padding: 2px 3px;
-        border-radius: 50px 20px;
+        padding: 0.125rem 0.188rem;
+        border-radius: 3.125rem 1.25rem;
     }
 
     .state-pill {
         background-color: #6b8e23;
         border: none;
-        padding: 2px 3px;
-        border-radius: 50px 20px;
+        padding: 0.125rem 0.188rem;
+        border-radius: 3.125rem 1.25rem;
     }
 
     .language-pill {
         background-color: #008b8b;
         border: none;
-        padding: 2px 3px;
-        border-radius: 50px 20px;
+        padding: 0.125rem 0.188rem;
+        border-radius: 3.125rem 1.25rem;
     }
 
     .cat-pill {
         background-color: #2b67c4;
         border: none;
-        padding: 2px 3px;
-        border-radius: 50px 20px;
+        padding: 0.125rem 0.188rem;
+        border-radius: 3.125rem 1.25rem;
     }
 
     .faq-cat {
-        font-size: 13px;
+        font-size: 0.813rem;
         color: #950202;
-        padding: 5px;
+        padding: 0.313rem;
         text-align: center;
-        border-radius: 50px 20px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 3.125rem 1.25rem;
+        box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
     }
 
     .faq-cat-name {
-        background-color: #ffe4c4;
+        background-color: #e8e8e8;
     }
 
 }

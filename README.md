@@ -5,5 +5,7 @@
 
 	1. Update your existing FAQ by ticking 'Featured FAQ' checkbox.
 	2. See customer portal or public portal.
+	
+![faq-card](faq-card.png)
 		
 [![Watch the video](https://img.youtube.com/vi/u5YRaMt2UTQ/hqdefault.jpg)](https://www.youtube.com/embed/u5YRaMt2UTQ)
