@@ -56,44 +56,6 @@
 </div>
 # --
 
-[% RenderBlockStart("QuickSearch") %]
-                    <div class="WidgetSimple search-widget">
-                        <div class="Header">
-                            <h3>[% Translate("Search") | html %]</h3>
-                        </div>
-
-                        <div class="Content">
-                            <ul class="Actionlist">
-                                <li>
-                                    <form class="SearchBox" action="[% Env("CGIHandle") %]" method="post">
-                                        <input type="hidden" name="Action" value="[% Data.Action | html %]"/>
-                                        <input type="hidden" name="Subaction" value="Search"/>
-                                        <input type="hidden" name="Nav" value="[% Data.Nav | html %]"/>
-                                        <input type="hidden" name="SearchBackLink" value="[% Data.SearchBackLink | html %]"/>
-
-                                        <div class="field-wrapper">
-                                            <input type="text" name="Fulltext" value="[% Data.Search | html %]" id="Search" title="[% Translate("Search") | html %]"/>
-                                            <button type="submit" value="[% Translate("Search") | html %]" class="btn-primary btn-main btn-icon">
-                                                <i class="fa fa-search"></i>
-                                                <span class="InvisibleText"><span>
-                                                [% Translate("Quick Search") | html %]
-                                            </button>
-                                        </div>
-                                    </form>
-
-                                    <p class="FieldExplanation">[% Translate("Wildcards are allowed.") | html %]</p>
-
-                                    <a  class="btn-primary btn-main" href="[% Env("Baselink") %]Action=[% Data.Action | uri %];">
-                                        <span>
-                                            [% Translate("Advanced Search") | html %]
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-[% RenderBlockEnd("QuickSearch") %]
-
 [% RenderBlockStart("InfoBoxFAQMiniList") %]
                     <div class="WidgetSimple mini-list-widget">
 
@@ -131,6 +93,36 @@
             </div>
 
             <div class="ContentColumn">
+# --
+# Featured and Card FAQ
+# --
+[% RenderBlockStart("QuickSearch") %]
+                    <div class="WidgetSimple search-widget search-widget-extended">
+                        <div class="Content">
+                            <ul class="Actionlist">
+                                <li>
+                                    <form class="SearchBox" action="[% Env("CGIHandle") %]" method="post">
+                                        <input type="hidden" name="Action" value="[% Data.Action | html %]"/>
+                                        <input type="hidden" name="Subaction" value="Search"/>
+                                        <input type="hidden" name="Nav" value="[% Data.Nav | html %]"/>
+                                        <input type="hidden" name="SearchBackLink" value="[% Data.SearchBackLink | html %]"/>
+
+                                        <div class="field-wrapper">
+                                            <input type="text" name="Fulltext" value="[% Data.Search | html %]" id="Search" title="[% Translate("Search") | html %]"/>
+                                            <button type="submit" value="[% Translate("Search") | html %]" class="btn-primary btn-main btn-icon">
+                                                <i class="fa fa-search"></i>
+                                                <span class="InvisibleText"><span>
+                                                [% Translate("Quick Search") | html %]
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <p class="FieldExplanation">[% Translate("Wildcards are allowed. You can use") | html %] <a href="[% Env("Baselink") %]Action=[% Data.Action | uri %];">Advanced Search</a>[% Translate(" instead.") | html %]</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+[% RenderBlockEnd("QuickSearch") %]
 
 [% RenderBlockStart("Subcategories") %]
                    
@@ -177,16 +169,13 @@
 # Featured and Card FAQ
 # --
                 <div class="row">
-[% RenderBlockStart("Record") %] 
+[% RenderBlockStart("Record") %]
                     <div class="column">
-
-                    <a href="[% Env("Baselink") %]Action=PublicFAQZoom;ItemID=[% Data.FAQID | uri %];ZoomBackLink=[% Data.ZoomBackLink | uri %];" class="faq-no-link">
-                    
                     <div class="WidgetSimple WidgetSimpleExtended">
                         <div class="Header">
                             <h3><a href="[% Env("Baselink") %]Action=PublicFAQZoom;ItemID=[% Data.FAQID | uri %];ZoomBackLink=[% Data.ZoomBackLink | uri %];" class="faq-no-link">FAQ#[% Data.Number | html %]</a></h3>
                         </div>
-                        <div class="Content">  
+                        <div class="Content">
                             <span class="faq-title" title="[% Data.Title | html %]"><a href="[% Env("Baselink") %]Action=PublicFAQZoom;ItemID=[% Data.FAQID | uri %];ZoomBackLink=[% Data.ZoomBackLink | uri %];" class="faq-no-link">[% Data.Title | truncate(160) | html %]</a></span>
                             <span class="extra-pill">
 [% RenderBlockStart("Featured") %]
