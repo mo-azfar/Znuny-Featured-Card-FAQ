@@ -115,8 +115,8 @@
                         <a href="[% Env("Baselink") %]Action=[% Env("Action") %];CategoryID=[% Data.CategoryID | uri %]" title="[% Data.Comment | html %]">
                         <div class="faq-cat faq-cat-name">
                             <h2>[% Data.Name | html %]</h2>
-                            <h3>Articles ([% Data.ArticleCount | html %])</h3>
-                            <h3>Subcategories ([% Data.SubCategoryCount | html %])</h3>
+                            <p>Articles ([% Data.ArticleCount | html %])</p>
+                            <p>Subcategories ([% Data.SubCategoryCount | html %])</p>
                         </div>
                         </a>
                     </div>

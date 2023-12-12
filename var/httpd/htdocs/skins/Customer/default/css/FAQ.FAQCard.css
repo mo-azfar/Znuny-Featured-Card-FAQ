@@ -27,12 +27,21 @@ handheld {
         border: none;
     }
 
-    /* Float 3 columns side by side */
-    .column {
-        float: left;
-        width: 33%;
-        padding: 0 0.625rem;
-        padding-bottom: 1.2rem;
+    /* FAQ CATEGORY */
+    .row-cat {
+        margin: 0 -0.313rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-bottom: 0.1rem double #e8e8e8;
+        margin-bottom: 0.3rem;
+    }
+
+    /* Clear floats after the columns */
+    .row-cat:after {
+        content: "";
+        display: table;
+        clear: both;
     }
 
     /* Float 5 columns side by side */
@@ -43,21 +52,30 @@ handheld {
         padding-bottom: 1.2rem;
     }
 
-    /* Remove extra left and right margins, due to padding */
+    .faq-cat {
+        font-size: 0.813rem;
+        color: #950202;
+        padding: 0.313rem;
+        text-align: center;
+        box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .faq-cat-name {
+        background-color: #ffe8d3;
+    }
+
+    .faq-cat-name p {
+        color: #950202;
+        font-size: 0.75rem;
+    }
+
+
+    /* FAQ ITEM */
     .row {
         margin: 0 -0.313rem;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-    }
-
-    .row-cat {
-        margin: 0 -0.313rem;
-        display: flex;
-        justify-content: left;
-        flex-wrap: wrap;
-        border-bottom: 0.1rem double #e8e8e8;
-        margin-bottom: 0.3rem;
     }
 
     /* Clear floats after the columns */
@@ -67,26 +85,12 @@ handheld {
         clear: both;
     }
 
-    /* Clear floats after the columns */
-    .row-cat:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    /* Responsive columns */
-    @media screen and (max-width: 600px) {
-        .column {
-            width: 100%;
-            display: block;
-            margin-bottom: 0.1rem;
-        }
-
-        .column-cat {
-            width: 33%;
-            display: block;
-            margin-bottom: 0.1rem;
-        }
+    /* Float 3 columns side by side */
+    .column {
+        float: left;
+        width: 33%;
+        padding: 0 0.625rem;
+        padding-bottom: 1.2rem;
     }
 
     .faq-title {
@@ -137,17 +141,19 @@ handheld {
         border-radius: 3.125rem 1.25rem;
     }
 
-    .faq-cat {
-        font-size: 0.813rem;
-        color: #950202;
-        padding: 0.313rem;
-        text-align: center;
-        border-radius: 3.125rem 1.25rem;
-        box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
-    }
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+        .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
 
-    .faq-cat-name {
-        background-color: #ffe8d3;
+        .column-cat {
+            width: 50%;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
     }
 
 }
