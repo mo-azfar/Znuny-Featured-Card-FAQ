@@ -157,15 +157,19 @@ sub Run {
         UserID   => $Self->{UserID},
     );
 
+    # --
+    # FAQ Card and Features
+    # --
     # show subcategories list
-    $LayoutObject->Block(
-        Name => 'Subcategories',
-        Data => {},
-    );
-    $LayoutObject->Block(
-        Name => 'OverviewResult',
-        Data => {},
-    );
+    # $LayoutObject->Block(
+    #     Name => 'Subcategories',
+    #     Data => {},
+    # );
+    # $LayoutObject->Block(
+    #     Name => 'OverviewResult',
+    #     Data => {},
+    # );
+    # --
 
     # get interface state list
     my $InterfaceStates = $FAQObject->StateTypeList(
@@ -175,6 +179,20 @@ sub Run {
 
     # check if there are subcategories
     if ( $CategoryIDsRef && ref $CategoryIDsRef eq 'ARRAY' && @{$CategoryIDsRef} ) {
+
+        # --
+        # FAQ Card and Features
+        # --
+        #show subcategories list only if faq category have subcategories
+        $LayoutObject->Block(
+            Name => 'Subcategories',
+            Data => {},
+        );
+        $LayoutObject->Block(
+            Name => 'OverviewResult',
+            Data => {},
+        );
+        #
 
         # show data for each subcategory
         for my $SubCategoryID ( @{$CategoryIDsRef} ) {
@@ -207,12 +225,16 @@ sub Run {
         }
     }
 
+    # --
+    # FAQ Card and Features
+    # --
     # otherwise a no data found message is displayed
-    else {
-        $LayoutObject->Block(
-            Name => 'NoCategoryDataFoundMsg',
-        );
-    }
+    # else {
+    #     $LayoutObject->Block(
+    #         Name => 'NoCategoryDataFoundMsg',
+    #     );
+    # }
+    #
 
     # set default interface settings
     my $Interface = $FAQObject->StateTypeGet(

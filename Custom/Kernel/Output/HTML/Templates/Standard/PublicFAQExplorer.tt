@@ -45,7 +45,7 @@
     <div class="Content">
         <ul class="Actionlist">
             <li>
-                <a  class="btn-primary btn-main" href="customer.pl">
+                <a  class="btn-primary btn-main" href="[% Config("HttpType") %]://[% Config("FQDN") %]/[% Config("ScriptAlias") %]customer.pl">
                     <span>
                         [% Translate("Customer Portal Login") | html %]
                     </span>
@@ -129,13 +129,13 @@
 [% RenderBlockStart("OverviewResult") %]
                             
                 <h2>[% Translate("Subcategories") | html %]</h2>
-
-[% RenderBlockStart("NoCategoryDataFoundMsg") %]
-                <a href="#">[% Translate("No subcategories found.") | html %]</a>                     
-[% RenderBlockEnd("NoCategoryDataFoundMsg") %]
 # --
 # Featured and Card FAQ
 # --
+#[% RenderBlockStart("NoCategoryDataFoundMsg") %]
+#                <a href="#">[% Translate("No subcategories found.") | html %]</a>                     
+#[% RenderBlockEnd("NoCategoryDataFoundMsg") %]
+
                 <div class="row-cat">
 [% RenderBlockStart("OverviewResultRow") %]
                     <div class="column-cat">

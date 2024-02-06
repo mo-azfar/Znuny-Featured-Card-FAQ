@@ -102,13 +102,13 @@
 [% RenderBlockStart("OverviewResult") %]
                             
                 <h2>[% Translate("Subcategories") | html %]</h2>
-                                             
-[% RenderBlockStart("NoCategoryDataFoundMsg") %]                                   
-                <a href="#">[% Translate("No subcategories found.") | html %]</a>                                   
-[% RenderBlockEnd("NoCategoryDataFoundMsg") %]
 # --
 # Featured and Card FAQ
-# --
+# --                                           
+#[% RenderBlockStart("NoCategoryDataFoundMsg") %]                                   
+#                <a href="#">[% Translate("No subcategories found.") | html %]</a>                                   
+#[% RenderBlockEnd("NoCategoryDataFoundMsg") %]
+
                 <div class="row-cat">
 [% RenderBlockStart("OverviewResultRow") %]
                     <div class="column-cat">

@@ -129,15 +129,18 @@ sub Run {
         UserID       => $Self->{UserID},
     );
 
+    # --
+    # FAQ Card and Features
+    # --
     # show subcategories list
-    $LayoutObject->Block(
-        Name => 'Subcategories',
-        Data => {},
-    );
-    $LayoutObject->Block(
-        Name => 'OverviewResult',
-        Data => {},
-    );
+    # $LayoutObject->Block(
+    #     Name => 'Subcategories',
+    #     Data => {},
+    # );
+    # $LayoutObject->Block(
+    #     Name => 'OverviewResult',
+    #     Data => {},
+    # );
 
     # get interface states list
     my $InterfaceStates = $FAQObject->StateTypeList(
@@ -147,6 +150,15 @@ sub Run {
 
     # check if there are subcategories
     if ( $CategoryIDsRef && ref $CategoryIDsRef eq 'ARRAY' && @{$CategoryIDsRef} ) {
+
+        $LayoutObject->Block(
+            Name => 'Subcategories',
+            Data => {},
+        );
+        $LayoutObject->Block(
+            Name => 'OverviewResult',
+            Data => {},
+        );
 
         # show data for each subcategory
         for my $SubCategoryID ( @{$CategoryIDsRef} ) {
