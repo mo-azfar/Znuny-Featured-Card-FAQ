@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+	<Name>Znuny-Featured-Card-FAQ</Name>
+    <Version>7.0.5</Version>
+    <Framework>7.0.x</Framework>
+    <Vendor>mo-azfar</Vendor>
+    <URL>https://github.com/mo-azfar/Znuny-Featured-Card-FAQ</URL>
+	<License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
+    <Description Lang="en">Display featured faq at faq main page for public and customer. Introduce card based display instead of table.</Description>
+	<ChangeLog Version="7.0.1">New package.</ChangeLog> 
+    <ChangeLog Version="7.0.2">Change FAQ category style.</ChangeLog> 
+    <ChangeLog Version="7.0.3">Change color. move search bar to main column.</ChangeLog> 
+    <ChangeLog Version="7.0.4">Center all items.</ChangeLog> 
+    <ChangeLog Version="7.0.5">Remove 'No Sub Catagories' text and block if no sub category. Add login button at zoom view.</ChangeLog> 
+    <PackageRequired Version="7.0.1">FAQ</PackageRequired>
+    <Filelist>
+        <File Permission="660" Location="Kernel/Config/Files/XML/ZZZFAQCard.xml"></File>
+        <File Permission="660" Location="Custom/Kernel/Modules/CustomerFAQExplorer.pm"></File>
+        <File Permission="660" Location="Custom/Kernel/Modules/PublicFAQExplorer.pm"></File>
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/CustomerFAQExplorer.tt"/>
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/CustomerFAQSearchResultShort.tt"/>
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/PublicFAQExplorer.tt"/>
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/PublicFAQSearchResultShort.tt"/>
+        <File Permission="660" Location="Custom/Kernel/Output/HTML/Templates/Standard/PublicFAQZoom.tt"/>
+        <File Permission="660" Location="var/httpd/htdocs/skins/Customer/default/css/FAQ.FAQCard.css"/>
+    </Filelist>
+	<IntroInstall Lang="en" Title="Install Information" Type="pre"><![CDATA[
+        <br/>
+        <b>WELCOME</b>
+        <br/>
+        <br/>
+        You are about to install the package Znuny-Featured-Card-FAQ.Check <a href='https://github.com/mo-azfar/Znuny-Featured-Card-FAQ' target='_blank'/>README</a><br/>
+        <br/>
+        <br/>
+		<b>1. DynamicField FAQ - FeaturedFAQ will be automatically created and assign to FAQ screen.</b>
+		<br/>
+        <b>2. If not, do this manually. Name: FeaturedFAQ / Object: FAQ / Type: Checkbox.</b>
+        <br/>
+		<br/>
+        ((enjoy))<br/>
+        <br/>
+    ]]></IntroInstall>
+    <CodeInstall><![CDATA[
+my $ZnunyHelperObject = $Kernel::OM->Get('Kernel::System::ZnunyHelper');
+#create dynamic field faq featured
+my @DynamicFields = (
+        {
+            Name       => 'FeaturedFAQ',
+            Label      => "Featured FAQ ?",
+            ObjectType => 'FAQ',
+            FieldType  => 'Checkbox',
+            Config     => {
+                DefaultValue => "0",
+            },
+        },
+    );
+my $Success1 = $ZnunyHelperObject->_DynamicFieldsCreateIfNotExists( @DynamicFields );
+
+my %Screens = (
+        'FAQ::Frontend::OverviewSmall###DynamicField' => {
+            FeaturedFAQ => 1,
+        },
+        'FAQ::Frontend::AgentFAQAdd###DynamicField' => {
+            FeaturedFAQ => 1,
+        },
+        'FAQ::Frontend::AgentFAQEdit###DynamicField' => {
+            FeaturedFAQ => 1,
+        },
+        'FAQ::Frontend::AgentFAQZoom###DynamicField' => {
+            FeaturedFAQ => 1,
+        },
+    );
+my $Success2 = $ZnunyHelperObject->_DynamicFieldsScreenEnable(%Screens);
+]]></CodeInstall>
+	<IntroUninstall Lang="en" Title="Uninstall Information" Type="pre"><![CDATA[
+		<br/>
+		<b>You are about to removing the package Znuny-Featured-Card-FAQ.</b>
+		<br/>
+        <br/>
+        <b>DynamicField FAQ - FeaturedFAQ will be not deleted. However, it will be removed from the FAQ screen.</b>
+        <br/>
+        <br/>
+	]]></IntroUninstall>
+   <CodeUninstall><![CDATA[
+my $ZnunyHelperObject = $Kernel::OM->Get('Kernel::System::ZnunyHelper');
+my %Screens = (
+        'FAQ::Frontend::OverviewSmall###DynamicField' => {
+            FeaturedFAQ => 1,
+        },
+        'FAQ::Frontend::AgentFAQAdd###DynamicField' => {
+            FeaturedFAQ => 1,
+        },
+        'FAQ::Frontend::AgentFAQEdit###DynamicField' => {
+            FeaturedFAQ => 1,
+        },
+        'FAQ::Frontend::AgentFAQZoom###DynamicField' => {
+            FeaturedFAQ => 1,
+        },
+    );
+my $Success1 =  $ZnunyHelperObject->_DynamicFieldsScreenDisable(%Screens);
+]]></CodeUninstall>
+</otrs_package>
