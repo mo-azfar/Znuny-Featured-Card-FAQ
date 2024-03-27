@@ -45,9 +45,9 @@
         <div class="LayoutFixedSidebar SidebarLast">
 
             <div class="SidebarColumn">
-# --
+# ---
 # Featured and Card FAQ
-# --
+# ---
                 <div class="WidgetSimple">
                     <div class="Header">
                         <h3>[% Translate("Can't Find Related FAQ ? Login Now") | html %]</h3>
@@ -65,7 +65,7 @@
                         </ul>
                     </div>
                 </div>
-# --
+# ---
                 <div class="WidgetSimple widget-information">
                     <div class="Header">
                         <h2>[% Translate("FAQ Information") | html %]</h2>

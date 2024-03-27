@@ -157,9 +157,9 @@ sub Run {
         UserID   => $Self->{UserID},
     );
 
-    # --
+    # ---
     # FAQ Card and Features
-    # --
+    # ---
     # show subcategories list
     # $LayoutObject->Block(
     #     Name => 'Subcategories',
@@ -169,7 +169,7 @@ sub Run {
     #     Name => 'OverviewResult',
     #     Data => {},
     # );
-    # --
+    # ---
 
     # get interface state list
     my $InterfaceStates = $FAQObject->StateTypeList(
@@ -180,9 +180,9 @@ sub Run {
     # check if there are subcategories
     if ( $CategoryIDsRef && ref $CategoryIDsRef eq 'ARRAY' && @{$CategoryIDsRef} ) {
 
-        # --
+        # ---
         # FAQ Card and Features
-        # --
+        # ---
         #show subcategories list only if faq category have subcategories
         $LayoutObject->Block(
             Name => 'Subcategories',
@@ -192,7 +192,7 @@ sub Run {
             Name => 'OverviewResult',
             Data => {},
         );
-        #
+        # ---
 
         # show data for each subcategory
         for my $SubCategoryID ( @{$CategoryIDsRef} ) {
@@ -224,10 +224,10 @@ sub Run {
             );
         }
     }
-
-    # --
+    
+    # ---
     # FAQ Card and Features
-    # --
+    # ---
     # otherwise a no data found message is displayed
     # else {
     #     $LayoutObject->Block(
@@ -235,16 +235,17 @@ sub Run {
     #     );
     # }
     #
-
+    # ---
+    
     # set default interface settings
     my $Interface = $FAQObject->StateTypeGet(
         Name   => 'public',
         UserID => $Self->{UserID},
     );
 
-    # --
+    # ---
     # FAQ Card and Features
-    # --
+    # ---
     # # search all FAQ articles within the given category
     # my @ViewableItemIDs = $FAQObject->FAQSearch(
     #     OrderBy          => [$SortBy],
@@ -286,7 +287,7 @@ sub Run {
             }
         );
     }
-    # --
+    # ---
 
     # set the SortBy Class
     my $SortClass;
@@ -386,7 +387,7 @@ sub Run {
                 }
 
                 my $DynamicFieldObject = $Kernel::OM->Get('Kernel::System::DynamicField');
-	            my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
+                my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
                 my $DynamicField = $DynamicFieldObject->DynamicFieldGet(
                     Name => 'FeaturedFAQ',
                 );

@@ -102,9 +102,9 @@
 [% RenderBlockStart("OverviewResult") %]
                             
                 <h2>[% Translate("Subcategories") | html %]</h2>
-# --
+# ---
 # Featured and Card FAQ
-# --                                           
+# ---                                         
 #[% RenderBlockStart("NoCategoryDataFoundMsg") %]                                   
 #                <a href="#">[% Translate("No subcategories found.") | html %]</a>                                   
 #[% RenderBlockEnd("NoCategoryDataFoundMsg") %]
@@ -122,7 +122,7 @@
                     </div>
 [% RenderBlockEnd("OverviewResultRow") %]
                 </div>
-# -- 
+# --- 
 [% RenderBlockEnd("OverviewResult") %]
                 
 [% RenderBlockEnd("Subcategories") %]
@@ -139,9 +139,9 @@
                                 <a href="#">[% Translate("No FAQ articles found.") | html %]</a>
 [% RenderBlockEnd("NoFAQDataFoundMsg") %]
 
-# --
+# ---
 # Featured and Card FAQ
-# --
+# ---
                 <div class="row">
 [% RenderBlockStart("Record") %]
                     <div class="column">
@@ -166,7 +166,7 @@
                     </div>                                
 [% RenderBlockEnd("Record") %]
                 </div>                     
-# --                              
+# ---                              
 [% RenderBlockStart("BottomSubNavigation") %]
                                 <div class="Pagination">
                                     <strong>[% Data.Result | html %]</strong> [% Translate("of") | html %] <strong>[% Data.TotalHits | html %]</strong> - [% Translate("Page") | html %]: [% Data.SiteNavBar %]

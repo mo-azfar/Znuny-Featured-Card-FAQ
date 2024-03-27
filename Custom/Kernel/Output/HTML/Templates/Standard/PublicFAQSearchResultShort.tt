@@ -69,9 +69,9 @@
                                 <a href="#">[% Translate("No FAQ data found.") | html %]</a>
 [% RenderBlockEnd("NoDataFoundMsg") %]
 
-# --
+# ---
 # Featured and Card FAQ
-# --
+# ---
                 <div class="row">
 [% RenderBlockStart("Record") %]
                     <div class="column">
@@ -92,7 +92,7 @@
                     </div>                             
 [% RenderBlockEnd("Record") %]
                     </div>  
-# --
+# ---
 [% RenderBlockStart("BottomSubNavigation") %]
                     <div id="BottomActionRow" class="ActionRow BigButtons">
                         <ul class="Tabs">

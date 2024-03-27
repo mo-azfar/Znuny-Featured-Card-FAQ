@@ -129,19 +129,21 @@ sub Run {
         UserID       => $Self->{UserID},
     );
 
-    # --
-    # FAQ Card and Features
-    # --
-    # show subcategories list
-    # $LayoutObject->Block(
-    #     Name => 'Subcategories',
-    #     Data => {},
-    # );
-    # $LayoutObject->Block(
-    #     Name => 'OverviewResult',
-    #     Data => {},
-    # );
-
+# ---
+# FAQ Card and Features
+# ---
+#    # show subcategories list
+#    $LayoutObject->Block(
+#        Name => 'Subcategories',
+#        Data => {},
+#    );
+#    $LayoutObject->Block(
+#        Name => 'OverviewResult',
+#        Data => {},
+#    );
+    
+# ---
+    
     # get interface states list
     my $InterfaceStates = $FAQObject->StateTypeList(
         Types  => $ConfigObject->Get('FAQ::Customer::StateTypes'),
@@ -204,19 +206,19 @@ sub Run {
         UserID => $Self->{UserID},
     );
 
-    # --
-    # FAQ Card and Features
-    # --
-    # search all FAQ articles within the given category
-    # my @ViewableItemIDs = $FAQObject->FAQSearch(
-    #     OrderBy          => [$SortBy],
-    #     OrderByDirection => [$OrderBy],
-    #     Limit            => $SearchLimit,
-    #     UserID           => $Self->{UserID},
-    #     States           => $InterfaceStates,
-    #     Interface        => $Interface,
-    #     CategoryIDs      => [$CategoryID],
-    # );
+# ---
+# FAQ Card and Features
+# ---
+#    # search all FAQ articles within the given category
+#    my @ViewableItemIDs = $FAQObject->FAQSearch(
+#        OrderBy          => [$SortBy],
+#        OrderByDirection => [$OrderBy],
+#        Limit            => $SearchLimit,
+#        UserID           => $Self->{UserID},
+#        States           => $InterfaceStates,
+#        Interface        => $Interface,
+#        CategoryIDs      => [$CategoryID],
+#    );
 
     my @ViewableItemIDs;
     
@@ -248,7 +250,7 @@ sub Run {
             }
         );
     }
-    # --
+# ---
     
     # set the SortBy Class
     my $SortClass;
@@ -339,7 +341,7 @@ sub Run {
                 }
 
                 my $DynamicFieldObject = $Kernel::OM->Get('Kernel::System::DynamicField');
-	            my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
+                my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
                 my $DynamicField = $DynamicFieldObject->DynamicFieldGet(
                     Name => 'FeaturedFAQ',
                 );
